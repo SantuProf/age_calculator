@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Difference Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Calculate Day Difference Between Birthdays</h2>
+        <label for="birthdayA">Birthday of Person A:</label>
+        <input type="date" id="birthdayA">
+
+        <label for="birthdayB">Birthday of Person B:</label>
+        <input type="date" id="birthdayB">
+
+        <button onclick="calculateDifference()">Calculate Difference</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateDifference() {
+            // Get the values of the input fields
+            const dateA = new Date(document.getElementById("birthdayA").value);
+            const dateB = new Date(document.getElementById("birthdayB").value);
+
+            // Check if both dates are valid
+            if (!isNaN(dateA) && !isNaN(dateB)) {
+                // Calculate the time difference in milliseconds
+                const timeDiff = Math.abs(dateB - dateA);
+                // Convert time difference from milliseconds to days
+                const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+                // Display the result
+                document.getElementById("result").innerText = `The difference between the two birthdays is ${dayDiff} day(s).`;
+            } else {
+                document.getElementById("result").innerText = "Please enter valid dates.";
+            }
+        }
+    </script>
+
+</body>
+</html>
